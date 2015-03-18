@@ -1,15 +1,23 @@
 ## This function creates a list of functions related to a matrix in order to cache the result of the inveerse matrix computation
 ## the input x is an invertible matrix we want to cache the invers of
-
 makeCacheMatrix <- function(x = matrix()) {
   m <- NULL
+  # the set function saves the matrix in the x variable in the global environment, and clears m
   set <- function(y) {
     x <<- y
     m <<- NULL
   }
+  
+  # the get functions returns x, where the matrix is normally stored
   get <- function() x
+  
+  # saves the inverse in the global variable m
   setInverted <- function(inverted) m <<- inverted
+  
+  # gets the inverse and returns it
   getInverted <- function() m
+  
+  # returns the list of functions
   list(set = set, get = get,
        setInverted = setInverted,
        getInverted = getInverted)
